@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">Tutorial</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Header that goes above the title of the earthquake event [CHAR LIMIT=50] -->
+    <string name="header_event">UserId</string>
+
+    <!-- Header that goes above the date of the earthquake event [CHAR LIMIT=50] -->
+    <string name="header_date">Name</string>
+
+    <!-- Header that goes above whether or not there was a tsunami alert issued
+         during the earthquake event [CHAR LIMIT=50] -->
+    <string name="header_tsunami_alert">Email</string>
+
+    <!-- Text when there was no tsunami alert issued [CHAR LIMIT=50] -->
+    <string name="alert_no">No</string>
+
+    <!-- Text when there was a tsunami alert issued [CHAR LIMIT=50] -->
+    <string name="alert_yes">Yes</string>
+
+    <!-- Text when there was a tsunami alert issued [CHAR LIMIT=50] -->
+    <string name="alert_not_available">Not available</string>
+</resources>
