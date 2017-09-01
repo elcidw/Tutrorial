@@ -27,4 +27,11 @@
 
     <!-- Text when there was a tsunami alert issued [CHAR LIMIT=50] -->
     <string name="alert_not_available">Not available</string>
+    <string name="usersinfo">UsersInfo</string>
+    <string name="login">Login</string>
+    <string name="slideshow">Slideshow</string>
+    <string name="tools">Tools</string>
+    <string name="communicate">Communicate</string>
+    <string name="share">Share</string>
+    <string name="send">Send</string>
 </resources>
