@@ -27,4 +27,35 @@
 
     <!-- Text when there was a tsunami alert issued [CHAR LIMIT=50] -->
     <string name="alert_not_available">Not available</string>
+
+    <string name="tab_weiXin">微信</string>
+    <string name="tab_friend">通信录</string>
+    <string name="tab_find">发现</string>
+    <string name="tab_me">我</string>
+    <string name="action_bar_search">search</string>
+    <string name="plus">plus</string>
+    <string name="multi_chat">发起群聊</string>
+    <string name="add_friends">添加朋友</string>
+    <string name="scan">扫一扫</string>
+    <string name="pay_money">收付款</string>
+    <string name="help_devise">帮助与反馈</string>
+    <string name="chat_send">发送</string>
+    <string name="network_error">网络连接失败,请检查网络</string>
+    <string name="userName">昵称</string>
+    <string name="userName_hint">例如：张三</string>
+    <string name="userPhone_pre">+86</string>
+    <string name="userPhone_hint">你的手机号码</string>
+    <string name="userPassword">密码</string>
+    <string name="userPassword_hint">填写密码</string>
+    <string name="register">注册</string>
+    <string name="choose_picture">选择图片</string>
+    <string name="choose_from_photo">从相册中选择</string>
+    <string name="choose_from_camera">相机拍照</string>
+    <string name="choose_camera_error">未找到存储卡，请检查存储空间</string>
+    <string name="search_friedns_hint">微信号</string>
+    <string name="search">搜索:</string>
+    <string name="dialog_tip">提示</string>
+    <string name="dialog_message">你确定要添加%s用户吗？</string>
+    <string name="dialog_positive">确定</string>
+    <string name="dialog_negative">取消</string>
 </resources>
