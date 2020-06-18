@@ -1,5 +1,6 @@
 import re
 import hashlib
+from common.result import Result
 from module.article import Article
 from module.users import Users
 from module.credit import Credit
@@ -59,6 +60,7 @@ def login():
         # 实现登陆功能
         password = hashlib.md5(password.encode()).hexdigest()
         result = user.find_by_username(username)
+        ret = Result()
         if len(result) == 1 and result[0].password == password:
             session['islogin'] = 'true'
             session['userid'] = result[0].userid
@@ -68,13 +70,21 @@ def login():
             # 更新积分详细表
             Credit().insert_detail(type='正常登陆', target='0', credit=1)
             user.update_credit(1)
+            data = {}
+            data["userid"] = result[0].userid
+            data["name"] = result[0].nickname
+            data["username"] = result[0].username
+            data["role"] = result[0].role
+
             # 将Cookie写入浏览器
-            response = make_response('login-pass')
+            response = make_response(ret.succ(data))
             response.set_cookie('username', username, max_age=30*24*3600)
             response.set_cookie('password', password, max_age=30*24*3600)
+
             return response
         else:
-            return 'login-fail'
+
+            return ret.fail(401, 'login-fail', "")
 
 
 @user.route('/logout')
