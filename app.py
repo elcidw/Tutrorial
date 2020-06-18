@@ -18,4 +18,6 @@ db = SQLAlchemy(app)
 if __name__ == '__main__':
     from controller.user import *
     app.register_blueprint(user)
+    from controller.index import *
+    app.register_blueprint(index)
     app.run(debug=True, host='0.0.0.0', port=5000)

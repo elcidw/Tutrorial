@@ -1,4 +1,5 @@
 import math
+from common.result import Result
 
 from flask import Blueprint, render_template, abort, jsonify, session, request
 from module.article import Article
@@ -10,28 +11,29 @@ npp = 10
 
 @index.route('/')
 def home():
-    # if session.get('islogin') is None:
-    #     username = request.cookies.get('username')
-    #     password = request.cookies.get('password')
-    #     user = Users()
-    #     if username != None and password != None:
-    #         # 实现登陆功能
-    #         result = user.find_by_username(username)
-    #         if len(result) == 1 and result[0].password == password:
-    #             session['islogin'] = 'true'
-    #             session['userid'] = result[0].userid
-    #             session['username'] = username
-    #             session['nickname'] = result[0].nickname
-    #             session['role'] = result[0].role
 
     article = Article()
     result = article.find_limit_with_users(0, npp)
     total = math.ceil(article.get_total_count() / npp)
 
     last, most, recommended = article.find_last_most_recommended()
-
-    return render_template('index.html', result=result, page=1, total=total,
-                           last=last, most=most, recommended=recommended)
+    # 封装返回数据
+    ret = Result()
+    data = {}
+    data['last'] = last
+    data['most'] = most
+    data['recommended'] = recommended
+    data['total'] = total
+    list = []
+    for i in range(len(result)):
+        data2 = {}
+        data2['nickname'] = result[i][1]
+        data2['articleid'] = result[i][0].articleid
+        data2['headline'] = result[i][0].headline
+        data2['content'] = result[i][0].content[0:80]
+        list.append(data2)
+    data['data'] = list
+    return ret.succ(data)
 
 
 @index.route('/page/<int:page>')

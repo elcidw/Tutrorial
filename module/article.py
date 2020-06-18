@@ -8,7 +8,19 @@ dbsession, md, DBase = dbconnect()
 class Article(DBase):
     __table__ = Table('article', md, autoload=True)
 
+    @staticmethod
+    def serlize(book):
+        return {
+            'articleid': book.articleid,
+            'headline': book.headline,
+            'content': book.content
+        }
+
+    def __getitem__(self, item):
+
+        return getattr(self, item)
     # 查询所有文章
+
     def find_all(self):
         result = dbsession.query(Article).all()
 
@@ -24,6 +36,7 @@ class Article(DBase):
         result = dbsession.query(Article, Users.nickname).join(Users, Users.userid == Article.userid)\
             .filter(Article.hidden == 0, Article.drafted == 0, Article.checked == 1)\
             .order_by(Article.articleid.desc()).limit(count).offset(start).all()
+
         return result
 
     # 统计一下当前文章的总数量
@@ -92,12 +105,13 @@ class Article(DBase):
     def update_read_count(self, articleid):
         article = dbsession.query(Article).filter_by(
             articleid=articleid).first()
-        article.readcount = article.readcount+ 1
+        article.readcount = article.readcount + 1
         dbsession.commit()
 
     # 根据文章编号查询文章标题
     def find_headline_by_id(self, articleid):
-        row = dbsession.query(Article.headline).filter_by(articleid=articleid).first()
+        row = dbsession.query(Article.headline).filter_by(
+            articleid=articleid).first()
         return row.headline
 
     # 获取当前文章的上一篇和下一篇
@@ -105,8 +119,8 @@ class Article(DBase):
         dict = {}
 
         # 查询比当前编号小的当中最大的一个
-        row = dbsession.query(Article).filter(Article.hidden == 0, Article.drafted == 0, Article.checked == 1,\
-                            Article.articleid<articleid).order_by(Article.articleid.desc()).limit(1).first()
+        row = dbsession.query(Article).filter(Article.hidden == 0, Article.drafted == 0, Article.checked == 1,
+                                              Article.articleid < articleid).order_by(Article.articleid.desc()).limit(1).first()
         # 如果当前已是第一篇，上一篇也是当前文章
         if row is None:
             prev_id = articleid
@@ -117,8 +131,8 @@ class Article(DBase):
         dict['prev_headline'] = self.find_headline_by_id(prev_id)
 
         # 查询比当前编号大的当中最小的一个
-        row = dbsession.query(Article).filter(Article.hidden == 0, Article.drafted == 0, Article.checked == 1,\
-                            Article.articleid>articleid).order_by(Article.articleid).limit(1).first()
+        row = dbsession.query(Article).filter(Article.hidden == 0, Article.drafted == 0, Article.checked == 1,
+                                              Article.articleid > articleid).order_by(Article.articleid).limit(1).first()
         # 如果当前已是第一篇，上一篇也是当前文章
         if row is None:
             next_id = articleid
