@@ -9,7 +9,8 @@ app = Flask(__name__)
 CORS(app)
 
 # app.config.from_object('app.default_settings')
-app.config.from_envvar('APP_SETTINGS')
+# app.config.from_envvar('APP_SETTINGS')
+app.config.from_object('config.config.DevelopmentConfig')
 
 
 db = SQLAlchemy(app)

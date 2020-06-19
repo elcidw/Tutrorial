@@ -8,7 +8,7 @@
             "name": "Python: run",
             "type": "python",
             "env": {
-                "APP_SETTINGS": "configurations\\application.cfg"
+                "APP_SETTINGS": "config.config.DevelopmentConfig"
             },
             "request": "launch",
             "program": "app.py",

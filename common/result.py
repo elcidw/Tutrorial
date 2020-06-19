@@ -11,7 +11,7 @@ class Result:
         return self.send_to(200, "Success", data)
 
     def fail(self, data):
-        return send_to(400, "failure", data)
+        return self.send_to(400, "failure", data)
 
     def fail(self, code, msg, data):
-        return send_to(code, msg, data)
+        return self.send_to(code, msg, data)
