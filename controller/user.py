@@ -35,11 +35,6 @@ def register():
         # 实现注册
         password = hashlib.md5(password.encode()).hexdigest()
         result = user.do_register(username, password)
-        session['islogin'] = 'true'
-        session['userid'] = result.userid
-        session['username'] = username
-        session['nickname'] = result.nickname
-        session['role'] = result.role
         ret = result()
     return ret.succ('reg-pass')
 
@@ -64,10 +59,7 @@ def login():
         result = user.find_by_username(username)
         ret = Result()
         if len(result) == 1 and result[0].password == password:
-            session['islogin'] = 'true'
-            session['userid'] = result[0].id
-            session['username'] = username
-            session['nickname'] = result[0].name
+
             data = {}
             data["userid"] = result[0].id
             data["name"] = result[0].name

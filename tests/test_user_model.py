@@ -17,7 +17,10 @@ class test_decode_auth_token(BaseTestCase):
         auth_token = user.encode_auth_token(user.id)
         # print(auth_token)
         self.assertTrue(isinstance(auth_token, bytes))
-        self.assertGreater(Users.decode_auth_token(auth_token), 1)
+        import time
+        time.sleep(6)
+        self.assertEqual(Users.decode_auth_token(auth_token),
+                         'Signature expired. Please log in again.')
 
 
 if __name__ == '__main__':
